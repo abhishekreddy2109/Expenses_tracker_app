@@ -1,0 +1,10 @@
+const express = require("express");
+const { createIncCtrl, fetchAllIncCtrl, fetchIncDetailsCtrl, UpdateIncCtrl, deleteIncCtrl } = require("../../controllers/income/incomeCntrl");
+const authMiddleware = require("../../middlewares/authMidware");
+const incomeRoute = express.Router();
+incomeRoute.post("/", authMiddleware, createIncCtrl);
+incomeRoute.get("/", authMiddleware, fetchAllIncCtrl);
+incomeRoute.get("/:id", authMiddleware, fetchIncDetailsCtrl);
+incomeRoute.put("/:id", authMiddleware, UpdateIncCtrl);
+incomeRoute.delete("/:id", authMiddleware, deleteIncCtrl);
+module.exports = incomeRoute;

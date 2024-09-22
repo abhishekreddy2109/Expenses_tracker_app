@@ -1,0 +1,10 @@
+const express = require("express");
+const { createExpCtrl, fetchAllExpCtrl, fetchExpDetailsCtrl, UpdateExpCtrl, deleteExpCtrl } = require("../../controllers/expenses/expenseCtrl");
+const authMiddleware = require("../../middlewares/authMidware");
+const expenseRoute = express.Router();
+expenseRoute.post("/", authMiddleware, createExpCtrl);
+expenseRoute.get("/", authMiddleware, fetchAllExpCtrl);
+expenseRoute.get("/:id", authMiddleware, fetchExpDetailsCtrl);
+expenseRoute.put("/:id", authMiddleware, UpdateExpCtrl);
+expenseRoute.delete("/:id", authMiddleware, deleteExpCtrl);
+module.exports = expenseRoute;
